@@ -13,12 +13,12 @@ import com.android.volley.toolbox.Volley;
  * Created by hemanthreddy on 2/23/2016.
  */
 public class MySingleton {
-    private static MySingleton mInstance;
-    private RequestQueue mRequestQueue;
-    private ImageLoader mImageLoader;
-    private static Context mCtx;
+    public static MySingleton mInstance;
+    public RequestQueue mRequestQueue;
+    public ImageLoader mImageLoader;
+    public static Context mCtx;
 
-    private MySingleton(Context context) {
+    public MySingleton(Context context) {
         mCtx = context;
         mRequestQueue = getRequestQueue();
 

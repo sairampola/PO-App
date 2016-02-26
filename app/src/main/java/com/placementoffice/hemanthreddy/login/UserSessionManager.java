@@ -21,16 +21,16 @@ public class UserSessionManager {
     int PRIVATE_MODE = 0;
 
     // Sharedpref file name
-    private static final String PREF_NAME = "loginuser";
+    public static final String PREF_NAME = "loginuser";
 
     // All Shared Preferences Keys
-    private static final String IS_LOGIN = "IsLoggedIn";
+    public static final String IS_LOGIN = "IsLoggedIn";
 
     // User name (make variable public to access from outside)
     public static final String KEY_NAME = "name";
 
     // Email address (make variable public to access from outside)
-    public static final String KEY_EMAIL = "email";
+    public static final String KEY_ROLLNO = "email";
 
     public UserSessionManager(Context context)
     {
@@ -39,11 +39,11 @@ public class UserSessionManager {
         editor = pref.edit();
     }
 
-    public void createSession(String name,String email)
+    public void createSession(String name,String rollno)
     {
         editor.putBoolean(IS_LOGIN,true);
         editor.putString(KEY_NAME,name);
-        editor.putString(KEY_EMAIL,email);
+        editor.putString(KEY_ROLLNO,rollno);
 
         editor.commit();
     }

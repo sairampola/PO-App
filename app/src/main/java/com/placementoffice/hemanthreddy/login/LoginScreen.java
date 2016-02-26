@@ -1,5 +1,8 @@
 package com.placementoffice.hemanthreddy.login;
 
+import android.app.Activity;
+import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,6 +14,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.placementoffice.hemanthreddy.login.gcm.GCM;
+
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -21,16 +29,22 @@ import java.util.Map;
 
 public class LoginScreen extends AppCompatActivity implements View.OnClickListener{
 
-    private static boolean isUserSignedIn;
-
+    
     private TextView userid,password;
 
-    public static String email;
+    public static String rollno;
 
     Button button;
 
     UserSessionManager userSessionManager;
 
+    public GCM gcmObj;
+    Activity activity;
+
+    Context getinstance()
+    {
+        return this;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,18 +60,24 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
 
         button = (Button) findViewById(R.id.login);
         button.setOnClickListener(this);
+
+        //gcmObj = new GCM();
     }
 
 
     public void requestLogin()
     {
         final  String pass = password.getText().toString();
-        email = userid.getText().toString();
-        if(email != null && pass != null)
+        rollno = userid.getText().toString();
+        if(rollno != null && pass != null)
         {
-            userSessionManager.createSession("hemanth",email);
-            Intent intent = new Intent(this,HomeScreen.class);
-            startActivity(intent);
+            userSessionManager.createSession("hemanth", rollno);
+            Intent intent = new Intent(this, GCM.class);
+            intent.putExtra("type", "register");
+            intent.putExtra("rollno",rollno);
+            startService(intent);
+            Intent gintent = new Intent(this,HomeScreen.class);
+            startActivity(gintent);
             /**
             String url = "";
 
@@ -81,13 +101,16 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
                 public Map<String,String> getParams()
                 {
                     Map<String,String> params = new HashMap<String,String>();
-                    params.put("email",email);
+                    params.put("rollno",rollmo);
                     params.put("password",pass);
                     return params;
                 }
             };*/
         }
     }
+
+
+
 
     @Override
     public void onClick(View v) {

@@ -1,5 +1,6 @@
 package com.placementoffice.hemanthreddy.login;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,9 +14,16 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.placementoffice.hemanthreddy.login.gcm.GCM;
+
 public class HomeScreen extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     UserSessionManager userSessionManager;
+
+    public Context instance()
+    {
+        return this;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +109,8 @@ public class HomeScreen extends AppCompatActivity
         }
         else if(id == R.id.logout)
         {
+            //GCM gcm = new GCM();
+            //gcm.unregisterUser();
             userSessionManager.logoutUser();
         }
 
