@@ -59,6 +59,18 @@ public class GCM extends IntentService{
                 Log.e("re", "sdfdsfsdfs");
                 Toast.makeText(context,register_id,Toast.LENGTH_SHORT).show();
                 Log.e("reg", register_id);
+                AlertDialog alertDialog = new AlertDialog.Builder(getApplicationContext()).create();
+                alertDialog.setTitle("register id");
+                alertDialog.setMessage(register_id);
+
+
+                alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getApplicationContext(), "thanks", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                alertDialog.show();
+
             }
 
 
@@ -137,10 +149,10 @@ public class GCM extends IntentService{
         String f = intent.getStringExtra("type");
         rollno = intent.getStringExtra("rollno");
         myApplication = new MyApplication();
-        if(f == "register")
+        //if(f == "register")
        registerUser(rollno);
-        else
-            unRegisterUser(rollno);
+       // else
+          //  unRegisterUser(rollno);
 
     }
 
