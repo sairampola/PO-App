@@ -1,25 +1,23 @@
 package com.placementoffice.hemanthreddy.login;
 
-import android.app.DownloadManager;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.text.TextUtils;
-import android.util.Log;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -27,9 +25,7 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
-import com.placementoffice.hemanthreddy.login.gcm.GCM;
 import com.placementoffice.hemanthreddy.login.gcm.GCM_Application_Constants;
 import com.placementoffice.hemanthreddy.login.gcm.MyApplication;
 
@@ -37,7 +33,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -48,13 +43,16 @@ public class
         HomeScreen extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     UserSessionManager userSessionManager;
-
+Toolbar toolbar;
     int i = 0;
 
     ListView listView;
     NoticeAdapter noticeAdapter;
     List<Notice> noticeList = new ArrayList<Notice>();
     ProgressDialog pDialog;
+    FragmentManager mFragmentManager;
+
+    FragmentTransaction mFragmentTransaction;
     final String url = new URLConstants().BaseURL + "getnoticess.php";
 
     public Context instance() {
@@ -69,17 +67,22 @@ public class
 
         //Intent intent = this.getIntent();
         //Toast.makeText(getApplicationContext(),intent.getStringExtra("msg"),Toast.LENGTH_LONG).show();
+////////////////////////////////////////////////////////////////////////////*
+       // userSessionManager = new UserSessionManager(this);
+       // userSessionManager.checklogin();
+///////////////////////////////////////////
 
-        userSessionManager = new UserSessionManager(this);
-        userSessionManager.checklogin();
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        mFragmentManager = getSupportFragmentManager();
+        mFragmentTransaction = mFragmentManager.beginTransaction();
+        mFragmentTransaction.replace(R.id.containerView,new HomeFragment()).commit();
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Notice Board");
         setSupportActionBar(toolbar);
-        listView = (ListView) findViewById(R.id.noticeList);
-        noticeAdapter = new NoticeAdapter(this, noticeList);
-        listView.setAdapter(noticeAdapter);
-
+ ////////////////////////////////////////
+        //listView = (ListView) findViewById(R.id.noticeList);
+        //noticeAdapter = new NoticeAdapter(this, noticeList);
+        //listView.setAdapter(noticeAdapter);
+/////////////////////////////////////////
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -89,8 +92,8 @@ public class
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        this.getNoticess(20);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        //////////////////////this.getNoticess(20);
+       /* listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
              Notice obj = noticeList.get(position);
@@ -99,7 +102,7 @@ public class
                 intent.putExtra("id",obj.getId());
                 startActivity(intent);
             }
-        });
+        });*/////////////////////////////////////////////////////////
 
     }
 
@@ -200,8 +203,10 @@ public class
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
+        if (id == R.id.nav_nb) {
+            toolbar.setTitle("Notice Board");
+            FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.containerView,new HomeFragment()).commit();
         } else if (id == R.id.nav_gallery) {
             Intent intent = new Intent(this, NoticeView.class);
             startActivity(intent);
