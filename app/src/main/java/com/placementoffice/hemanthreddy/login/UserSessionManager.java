@@ -39,12 +39,10 @@ public class UserSessionManager {
         editor = pref.edit();
     }
 
-    public void createSession(String name,String rollno)
+    public void createSession(String rollno)
     {
         editor.putBoolean(IS_LOGIN,true);
-        editor.putString(KEY_NAME,name);
         editor.putString(KEY_ROLLNO,rollno);
-
         editor.commit();
     }
     public void checklogin()
@@ -74,5 +72,9 @@ public class UserSessionManager {
         // Add new Flag to start new Activity
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
+    }
+    public String getRollno()
+    {
+        return  pref.getString(KEY_ROLLNO,"");
     }
 }
