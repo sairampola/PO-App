@@ -7,10 +7,10 @@ public interface GCM_Application_Constants {
 
     //php application url to store the registered ID
 
-     String APP_SERVER_URL_REGISTER = "http://10.0.2.2:80/store_user_regid.php";
+     String APP_SERVER_URL_REGISTER = "http://10.10.30.212:80/gcm/store_user_regid.php";
 
     //uri to unregiter
-    String  APP_SERVER_URL_UNREGISTER = "http://localhost:80/deleteregister.php";
+    String  APP_SERVER_URL_UNREGISTER = "http://10.10.30.212:80/gcm/unsubscribe_nofication.php";
     //Google project number
      String GOOGLE_APP_ID = "";
 
