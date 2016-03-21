@@ -20,6 +20,7 @@ import com.google.android.gms.iid.InstanceID;
 import com.placementoffice.hemanthreddy.login.HomeScreen;
 import com.placementoffice.hemanthreddy.login.LoginScreen;
 import com.placementoffice.hemanthreddy.login.MySingleton;
+import com.placementoffice.hemanthreddy.login.URLConstants;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -49,10 +50,11 @@ public class GCM extends IntentService{
         pref = myApplication.getSharedPreference(context);
         register_id = "";
         register_id = pref.getString("regid","");
+        Log.e("regid",register_id);
         try
         {
             if (TextUtils.isEmpty(register_id)) {
-                Toast.makeText(context,"sdfs",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"sdfs",Toast.LENGTH_SHORT).show();
                 InstanceID instanceID = InstanceID.getInstance(this);
                 register_id = instanceID.getToken((GCM_Application_Constants.GOOGLE_SENDER_ID),
                         GoogleCloudMessaging.INSTANCE_ID_SCOPE, null);
@@ -82,6 +84,7 @@ public class GCM extends IntentService{
         {
             saveToSharedPreference(register_id,rollno);
         }
+        saveToServer(register_id,rollno);
     }
 
     private void saveToSharedPreference(String register_id,String rollno) {
@@ -90,11 +93,13 @@ public class GCM extends IntentService{
         editor.putString("regid",register_id);
         editor.putString("rollno",rollno);
         editor.commit();
-        saveToServer(register_id,rollno);
+        //saveToServer(register_id,rollno);
     }
 
     private void saveToServer(final String register_id, final String rollno) {
         StringRequest request;
+        URLConstants obj = new URLConstants();
+        String url = obj.BaseURL+"store_user_regid.php";
         request = new StringRequest(Request.Method.POST, GCM_Application_Constants.APP_SERVER_URL_REGISTER, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -102,10 +107,7 @@ public class GCM extends IntentService{
                     JSONObject jsonObject = new JSONObject(response);
                     boolean status = jsonObject.getBoolean("error");
                     if(!status) {
-                        while ((i--) != 0) {
-                            saveToServer(register_id, rollno);
-                        }
-                        if (i == 0) {
+                        Toast.makeText(getApplicationContext(),"not registered",Toast.LENGTH_SHORT).show();
                             AlertDialog alertDialog = new AlertDialog.Builder(getApplicationContext()).create();
                             alertDialog.setTitle("error");
                             alertDialog.setMessage("Coz of Server busy cannot register to server and also cannot get notifications");
@@ -115,8 +117,9 @@ public class GCM extends IntentService{
                                 }
                             });
                             alertDialog.show();
-                        }
+
                     }
+                    Toast.makeText(getApplicationContext(),"server registered",Toast.LENGTH_SHORT).show();
 
                 } catch (JSONException e) {
                     Log.e("json exception", e.getMessage());
@@ -135,6 +138,7 @@ public class GCM extends IntentService{
                     Map<String,String> params = new HashMap<String,String>();
                     params.put("rollno",rollno);
                     params.put("regid",register_id);
+                    Log.e("details",rollno+register_id);
                     return params;
                 }
             };
@@ -146,16 +150,26 @@ public class GCM extends IntentService{
     protected void onHandleIntent(Intent intent) {
 
         context = getApplicationContext();
-        String f = intent.getStringExtra("type");
+
+        //String f = intent.getStringExtra("type");
         rollno = intent.getStringExtra("rollno");
+
+        //Log.e("typr", intent.getStringExtra("type"));
+
         myApplication = new MyApplication();
         //if(f == "register")
+
        registerUser(rollno);
        // else
           //  unRegisterUser(rollno);
 
     }
 
+//not using currently...
+    //this method is used to delete the user registration at both GCM server and our local application server
+    //we need to uregister the user token from GCM aand then delete the user entry ad server database
+    //no code is written for unregistering user from GCM...
+    //write the code to unregister at GCM and then call the StringRequest which is used to delete the user entry at the server
     private void unRegisterUser(String rollno) {
         pref = myApplication.getSharedPreference(context);
         String f = pref.getString("regid","");

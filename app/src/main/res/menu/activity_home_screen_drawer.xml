@@ -11,13 +11,13 @@
             android:icon="@drawable/ic_menu_gallery"
             android:title="Gallery" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/change_password"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:title="change password" />
         <item
-            android:id="@+id/nav_manage"
+            android:id="@+id/update_photo"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:title="update pjoto" />
 
     </group>
 

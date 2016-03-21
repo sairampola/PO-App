@@ -7,7 +7,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 import android.text.TextUtils;
+import android.util.Log;
+import android.widget.Toast;
 
+import com.google.android.gms.games.Notifications;
 import com.placementoffice.hemanthreddy.login.R;
 
 /**
@@ -26,7 +29,8 @@ public class NotificationUtils {
         //check for empty push message
         if(TextUtils.isEmpty(message))
             return;
-
+        Log.e("msg","received");
+        //Log.e("data",intent.getStringExtra("data"));
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         final PendingIntent resultPendingIntent = PendingIntent.getActivity(
                 context,0,intent,PendingIntent.FLAG_CANCEL_CURRENT
@@ -39,6 +43,7 @@ public class NotificationUtils {
                 .setStyle(inboxStyle)
                 .setContentText(message)
                 .setContentIntent(resultPendingIntent)
+                .setDefaults(Notification.DEFAULT_SOUND | Notification.DEFAULT_VIBRATE | Notification.DEFAULT_LIGHTS)
                 .build();
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(GCM_Application_Constants.NOTIFICATION_ID,notification);
