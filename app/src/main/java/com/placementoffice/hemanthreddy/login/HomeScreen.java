@@ -20,6 +20,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -38,13 +39,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class
-
-        HomeScreen extends AppCompatActivity
+public class  HomeScreen extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     UserSessionManager userSessionManager;
-Toolbar toolbar;
+    Toolbar toolbar;
     int i = 0;
+    TextView s_name,s_rollno;
 
     ListView listView;
     NoticeAdapter noticeAdapter;
@@ -64,7 +64,11 @@ Toolbar toolbar;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
         userSessionManager = new UserSessionManager(this);
-       // getWindow().getDecorView().setBackgroundColor(Color.WHITE);
+       s_name = (TextView) findViewById(R.id.stu_name);
+        s_rollno = (TextView) findViewById(R.id.stu_rollno);
+        //s_rollno.setText(LoginScreen.rollno);
+        //s_name.setText(LoginScreen.name);
+        // getWindow().getDecorView().setBackgroundColor(Color.WHITE);
 
         //Intent intent = this.getIntent();
         //Toast.makeText(getApplicationContext(),intent.getStringExtra("msg"),Toast.LENGTH_LONG).show();

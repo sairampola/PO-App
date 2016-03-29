@@ -52,7 +52,7 @@ public class
     int i=0;
     private TextView userid, password,r_rollno,r_regid,pass,pass1;
 
-    public static String rollno;
+    public static String rollno,name;
 
     Button button,v_login,v_register,register,submit_password;
 
@@ -174,12 +174,14 @@ public class
 
                     try {
                         progressDialog.dismiss();
+                        Toast.makeText(getApplicationContext(),response,Toast.LENGTH_LONG).show();
                         JSONObject jsonObject = new JSONObject(response);
                         boolean a = jsonObject.getBoolean("error");
+
                         if(a)
                         Toast.makeText(getApplicationContext(),jsonObject.getString("error_details"),Toast.LENGTH_LONG).show();
                         else
-                        {
+                        {  name = jsonObject.getString("name");
                            // userSessionManager.createSession(rollno);
                             //starting the gcm intent service to register the device with the GCM servers and main server
                             Toast.makeText(getApplicationContext(),"gcm intent",Toast.LENGTH_SHORT).show();
