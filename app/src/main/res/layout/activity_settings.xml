@@ -13,51 +13,64 @@
         android:layout_height="wrap_content"
         />
 
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/layout_change_password"
-    android:visibility="visible">
-    <EditText
-        android:layout_width="320dp"
-        android:layout_height="60dp"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:id="@+id/pass1"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/layout_change_password"
+        android:visibility="visible">
+        <EditText
+            android:layout_width="320dp"
+            android:layout_height="60dp"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/pass1"
+            android:layout_weight="1"
+            android:layout_marginTop="150dp"
+            android:hint="New Password"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/pass2"
+            />
+        <EditText
+            android:layout_width="320dp"
+            android:layout_height="60dp"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/pass2"
+            android:layout_below="@+id/pass1"
+            android:layout_centerHorizontal="true"
+            android:hint="Confirm Password" />
 
-        android:layout_weight="1"
-        android:layout_marginTop="150dp"
-        android:hint="Enter Password"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/pass2" />
-    <EditText
-        android:layout_width="320dp"
-        android:layout_height="60dp"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:id="@+id/pass2"
-        android:layout_below="@+id/pass1"
-        android:layout_centerHorizontal="true"
-        android:hint="Confirm Password" />
 
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:text="Change Password"
+            android:id="@+id/submit"
+            android:layout_below="@+id/show_password"
+            android:layout_alignEnd="@+id/pass2"
+            android:layout_toEndOf="@+id/show_password" />
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Show Password"
+            android:id="@+id/show_password"
+            android:layout_below="@+id/pass2"
+            android:layout_alignStart="@+id/pass2" />
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="100dp"
-        android:layout_height="60dp"
-        android:text="Change Password"
-        android:id="@+id/submit"
-        android:layout_below="@+id/show_password"
-        android:layout_alignEnd="@+id/pass2"
-        android:layout_toEndOf="@+id/show_password" />
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Show Password"
-        android:id="@+id/show_password"
-        android:layout_below="@+id/pass2"
-        android:layout_alignStart="@+id/pass2" />
-</RelativeLayout>
+        <EditText
+            android:layout_width="320dp"
+            android:layout_height="60dp"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/oldpassword"
+            android:layout_weight="1"
+            android:hint="Old Password"
+            android:layout_alignBottom="@+id/pass1"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="65dp" />
+
+    </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

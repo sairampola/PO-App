@@ -7,34 +7,23 @@
             android:icon="@drawable/ic_menu_send"
             android:title="Notice Board" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
-        <item
-            android:id="@+id/change_password"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="change password" />
-        <item
-            android:id="@+id/update_photo"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="update pjoto" />
-
+            android:id="@+id/nav_share"
+            android:icon="@drawable/ic_menu_share"
+            android:title="Apply YBD" />
     </group>
-
-
-    <item android:title="Communicate">
+<group android:checkableBehavior="single"
+    >
         <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Apply YBD" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+    <item
+        android:id="@+id/change_password"
+        android:icon="@drawable/ic_menu_slideshow"
+        android:title="Change Password" />
+    <item
+        android:id="@+id/update_photo"
+        android:icon="@drawable/ic_menu_manage"
+        android:title="Upload Photo" />
         </menu>
-    </item>
-
+</group>
     <item
         android:id="@+id/logout"
         android:title="Log Out"/>

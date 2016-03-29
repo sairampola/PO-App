@@ -43,7 +43,7 @@ public class Settings extends AppCompatActivity implements View.OnClickListener{
 
     RelativeLayout layout_password,layout_upload;
 
-    EditText pass1,pass2;
+    EditText pass1,pass2,oldpassword;
 
     CheckBox show_password;
 
@@ -84,7 +84,7 @@ public class Settings extends AppCompatActivity implements View.OnClickListener{
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            Intent intent = new Intent(getApplicationContext(),HomeScreen.class);
+                Intent intent = new Intent(getApplicationContext(),HomeScreen.class);
                 startActivity(intent);
 
             }
@@ -108,6 +108,7 @@ public class Settings extends AppCompatActivity implements View.OnClickListener{
 
         pass1 = (EditText) findViewById(R.id.pass1);
         pass2 = (EditText) findViewById(R.id.pass2);
+        oldpassword = (EditText) findViewById(R.id.oldpassword);
 
         show_password = (CheckBox) findViewById(R.id.show_password);
         show_password.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -117,11 +118,13 @@ public class Settings extends AppCompatActivity implements View.OnClickListener{
                 {
                     pass1.setTransformationMethod(PasswordTransformationMethod.getInstance());
                     pass2.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    oldpassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
                 }
                 else
                 {
                     pass2.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
                     pass1.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    oldpassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
                 }
 
             }
@@ -156,6 +159,11 @@ public class Settings extends AppCompatActivity implements View.OnClickListener{
                 return;
             }
             UserSessionManager obj = new UserSessionManager(this);
+            if(obj.getPassword().equals(pass2))
+            {
+                oldpassword.setError("Incorrect Password");
+                return;
+            }
             change_Password(obj.getRollno(), pass1.getText().toString());
         }
         else if(v.getId() == R.id.browse)
@@ -204,7 +212,7 @@ public class Settings extends AppCompatActivity implements View.OnClickListener{
         })
         {
             @Override
-        public Map<String, String> getParams()
+            public Map<String, String> getParams()
             {
                 Map<String, String> params = new Hashtable<String, String>();
                 params.put("rollno",rollno);

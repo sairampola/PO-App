@@ -46,7 +46,8 @@ import org.w3c.dom.Text;
 import java.util.HashMap;
 import java.util.Map;
 
-public class  LoginScreen extends AppCompatActivity implements View.OnClickListener {
+public class
+        LoginScreen extends AppCompatActivity implements View.OnClickListener {
 
     int i=0;
     private TextView userid, password,r_rollno,r_regid,pass,pass1;
@@ -151,7 +152,7 @@ public class  LoginScreen extends AppCompatActivity implements View.OnClickListe
         final String pass = password.getText().toString();
         rollno = userid.getText().toString();
         Toast.makeText(getApplicationContext(),rollno+""+pass,Toast.LENGTH_LONG).show();
-        userSessionManager.createSession(rollno);
+        userSessionManager.createSession(rollno,pass);
         if(TextUtils.isEmpty(rollno))
         {
             userid.setError("rollno cant be empty!");

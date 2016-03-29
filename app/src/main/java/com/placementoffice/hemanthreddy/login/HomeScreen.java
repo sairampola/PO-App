@@ -63,6 +63,7 @@ Toolbar toolbar;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
+        userSessionManager = new UserSessionManager(this);
        // getWindow().getDecorView().setBackgroundColor(Color.WHITE);
 
         //Intent intent = this.getIntent();
@@ -207,10 +208,6 @@ Toolbar toolbar;
             toolbar.setTitle("Notice Board");
             FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.containerView,new HomeFragment()).commit();
-        } else if (id == R.id.nav_gallery) {
-            Intent intent = new Intent(this, NoticeView.class);
-            startActivity(intent);
-
         } else if (id == R.id.change_password) {
             Intent intent = new Intent(this, Settings.class);
             intent.putExtra("extra", "password");
@@ -225,8 +222,6 @@ Toolbar toolbar;
             toolbar.setTitle("Apply YBD");
             FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.containerView,new YbdFragment()).commit();
-        } else if (id == R.id.nav_send) {
-
         } else if (id == R.id.logout) {
             //GCM gcm = new GCM();
             //gcm.unregisterUser();

@@ -47,8 +47,9 @@ public class UserSessionManager {
     {
         return pref.getString("branch","");
     }
-    public void createSession(String rollno)
+    public void createSession(String rollno,String password)
     {
+        editor.putString("password",password);
         editor.putBoolean(IS_LOGIN,true);
         editor.putString(KEY_ROLLNO,rollno);
         editor.commit();
@@ -84,5 +85,9 @@ public class UserSessionManager {
     public String getRollno()
     {
         return  pref.getString(KEY_ROLLNO,"");
+    }
+    public String getPassword()
+    {
+        return pref.getString("password","");
     }
 }

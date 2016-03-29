@@ -5,5 +5,5 @@ package com.placementoffice.hemanthreddy.login;
  */
 public class
         URLConstants {
-    public final String BaseURL = "http://10.10.30.165:80/po/";
+    public final String BaseURL = "http://10.10.12.209:80/po/";
 }
