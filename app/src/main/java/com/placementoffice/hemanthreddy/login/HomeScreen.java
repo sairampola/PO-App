@@ -190,9 +190,9 @@ Toolbar toolbar;
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+        //if (id == R.id.action_settings) {
+        //    return true;
+        //}
 
         return super.onOptionsItemSelected(item);
     }
@@ -222,6 +222,9 @@ Toolbar toolbar;
             startActivity(intent);
         } else if (id == R.id.nav_share) {
 
+            toolbar.setTitle("Apply YBD");
+            FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.containerView,new YbdFragment()).commit();
         } else if (id == R.id.nav_send) {
 
         } else if (id == R.id.logout) {

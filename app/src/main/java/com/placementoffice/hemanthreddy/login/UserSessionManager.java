@@ -30,7 +30,7 @@ public class UserSessionManager {
     public static final String KEY_NAME = "name";
 
     // Email address (make variable public to access from outside)
-    public static final String KEY_ROLLNO = "email";
+    public static final String KEY_ROLLNO = "rollno";
 
     public UserSessionManager(Context context)
     {
@@ -38,7 +38,15 @@ public class UserSessionManager {
         pref = context.getSharedPreferences(PREF_NAME,PRIVATE_MODE);
         editor = pref.edit();
     }
-
+    public void setbranch(String branch)
+    {
+        editor.putString("branch",branch);
+        editor.commit();
+    }
+    public String getbranch()
+    {
+        return pref.getString("branch","");
+    }
     public void createSession(String rollno)
     {
         editor.putBoolean(IS_LOGIN,true);
@@ -60,7 +68,7 @@ public class UserSessionManager {
     }
     boolean isUserLoggedIn()
     {
-       return pref.getBoolean(IS_LOGIN,false);
+        return pref.getBoolean(IS_LOGIN,false);
     }
     public void logoutUser()
     {

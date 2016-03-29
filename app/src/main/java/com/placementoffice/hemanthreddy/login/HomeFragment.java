@@ -133,7 +133,7 @@ public class HomeFragment extends Fragment {
 
         final String f = pref.getString("regid", "");
         final String rollno = userSessionManager.getRollno();
-        Toast.makeText(getContext(), f + rollno, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(),f+rollno,Toast.LENGTH_SHORT).show();
         if(TextUtils.isEmpty(f))
             return;
         else
@@ -179,6 +179,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        //Toast.makeText(this,"resume",Toast.LENGTH_SHORT).show();
         MsgSharedPreference obj = new MsgSharedPreference(getContext());
         Log.e("msg received",""+obj.isMsgReceived());
         //Toast.makeText(this,obj.getTitle(),Toast.LENGTH_SHORT).show();
@@ -198,6 +199,7 @@ public class HomeFragment extends Fragment {
             obj.clearMsgPref();
             obj.setIsMsgReceived(false);
         }
+
     }
 
 }
