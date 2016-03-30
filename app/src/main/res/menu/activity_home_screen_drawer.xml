@@ -4,28 +4,25 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_nb"
-            android:icon="@drawable/ic_menu_send"
+            android:icon="@drawable/app_nb"
             android:title="Notice Board" />
         <item
             android:id="@+id/nav_share"
-            android:icon="@drawable/ic_menu_share"
+            android:icon="@drawable/app_ybd"
             android:title="Apply YBD" />
     </group>
-<group android:checkableBehavior="single">
-    <item android:title="Settings"/>
-
+    <group android:checkableBehavior="single">
     <item
         android:id="@+id/change_password"
-        android:icon="@drawable/ic_menu_slideshow"
+        android:icon="@drawable/app_cp"
         android:title="Change Password" />
     <item
         android:id="@+id/update_photo"
-        android:icon="@drawable/ic_menu_manage"
+        android:icon="@drawable/app_add"
         android:title="Upload Photo" />
-
-</group>
+    </group>
     <item
         android:id="@+id/logout"
+        android:icon="@drawable/app_logout"
         android:title="Log Out"/>
-
 </menu>

@@ -47,10 +47,11 @@ public class UserSessionManager {
     {
         return pref.getString("branch","");
     }
-    public void createSession(String rollno,String password)
+    public void createSession(String rollno,String password,String name)
     {
         editor.putString("password",password);
         editor.putBoolean(IS_LOGIN,true);
+        editor.putString("name",name);
         editor.putString(KEY_ROLLNO,rollno);
         editor.commit();
     }
@@ -90,4 +91,5 @@ public class UserSessionManager {
     {
         return pref.getString("password","");
     }
+    public String getname() { return pref.getString("name","noname");}
 }

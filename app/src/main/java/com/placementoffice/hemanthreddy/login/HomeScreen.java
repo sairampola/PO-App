@@ -15,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -41,6 +42,7 @@ import java.util.Map;
 
 public class  HomeScreen extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    static  String t1,t2;
     UserSessionManager userSessionManager;
     Toolbar toolbar;
     int i = 0;
@@ -64,8 +66,8 @@ public class  HomeScreen extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
         userSessionManager = new UserSessionManager(this);
-       s_name = (TextView) findViewById(R.id.stu_name);
-        s_rollno = (TextView) findViewById(R.id.stu_rollno);
+      // s_name = (TextView) findViewById(R.id.stu_name);
+       // s_rollno = (TextView) findViewById(R.id.stu_rollno);
         //s_rollno.setText(LoginScreen.rollno);
         //s_name.setText(LoginScreen.name);
         // getWindow().getDecorView().setBackgroundColor(Color.WHITE);
@@ -97,6 +99,13 @@ public class  HomeScreen extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        View header = navigationView.getHeaderView(0);
+        //navigationView.addHeaderView(header);
+        s_name = (TextView) header.findViewById(R.id.stu_name);
+        s_name.setText(LoginScreen.name);
+        s_rollno = (TextView) header.findViewById(R.id.stu_rollno);
+        s_rollno.setText(LoginScreen.rollno);
+        invalidateOptionsMenu();
         //////////////////////this.getNoticess(20);
        /* listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -186,6 +195,7 @@ public class  HomeScreen extends AppCompatActivity
         getMenuInflater().inflate(R.menu.home_screen, menu);
         return true;
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -286,10 +296,28 @@ public class  HomeScreen extends AppCompatActivity
 
         }
     }
+
+   /** @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+        View header = navigationView.getHeaderView(0);
+        //navigationView.addHeaderView(header);
+        s_name = (TextView) header.findViewById(R.id.stu_name);
+        s_name.setText(LoginScreen.name);
+        s_rollno = (TextView) header.findViewById(R.id.stu_rollno);
+        s_rollno.setText(LoginScreen.rollno);
+        return super.onPrepareOptionsMenu(menu);
+    }*/
+
     @Override
     public void onResume()
     {
         super.onResume();
+        s_name.setText(userSessionManager.getname());
+        //s_rollno = (TextView) header.findViewById(R.id.stu_rollno);
+        s_rollno.setText(userSessionManager.getRollno());
         //Toast.makeText(this,"resume",Toast.LENGTH_SHORT).show();
        MsgSharedPreference obj = new MsgSharedPreference(this);
        Log.e("msg received",""+obj.isMsgReceived());

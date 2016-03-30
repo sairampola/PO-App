@@ -54,6 +54,7 @@ public class YbdFragment extends Fragment {
                 Toast.makeText(getContext(), obj.getJobid(), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getContext(),YbdView.class);
                 intent.putExtra("jobid",obj.getJobid());
+                intent.putExtra("eligible",obj.isEligible());
                 startActivity(intent);
             }
         });

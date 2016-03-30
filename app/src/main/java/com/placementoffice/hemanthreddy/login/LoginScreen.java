@@ -1,5 +1,7 @@
 package com.placementoffice.hemanthreddy.login;
-
+/**
+ * Created by hemanthreddy on 2/23/2016.
+ */
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -152,7 +154,7 @@ public class
         final String pass = password.getText().toString();
         rollno = userid.getText().toString();
         Toast.makeText(getApplicationContext(),rollno+""+pass,Toast.LENGTH_LONG).show();
-        userSessionManager.createSession(rollno,pass);
+
         if(TextUtils.isEmpty(rollno))
         {
             userid.setError("rollno cant be empty!");
@@ -174,7 +176,7 @@ public class
 
                     try {
                         progressDialog.dismiss();
-                        Toast.makeText(getApplicationContext(),response,Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getApplicationContext(),response,Toast.LENGTH_LONG).show();
                         JSONObject jsonObject = new JSONObject(response);
                         boolean a = jsonObject.getBoolean("error");
 
@@ -184,6 +186,7 @@ public class
                         {  name = jsonObject.getString("name");
                            // userSessionManager.createSession(rollno);
                             //starting the gcm intent service to register the device with the GCM servers and main server
+                            userSessionManager.createSession(rollno,pass,name);
                             Toast.makeText(getApplicationContext(),"gcm intent",Toast.LENGTH_SHORT).show();
                             Intent gcm_intent = new Intent(getApplicationContext(),GCM.class);
                             gcm_intent.putExtra("rollno",rollno);
