@@ -22,6 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/toolbar"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
 
         <Button
@@ -49,7 +50,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/lt_buttons"
         android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:id="@+id/viewFlipper"
+
         android:layout_alignParentBottom="true"
         android:animateFirstView="true">
         <RelativeLayout
@@ -69,6 +72,7 @@
                 android:layout_marginTop="54dp"
                 android:hint="Roll NO"
                 android:layout_alignParentTop="true"
+                android:layout_alignLeft="@+id/password"
                 android:layout_alignStart="@+id/password" />
 
             <EditText
@@ -88,6 +92,7 @@
                 android:text="Log IN"
                 android:id="@+id/login"
                 android:layout_below="@+id/password"
+                android:layout_alignRight="@+id/password"
                 android:layout_alignEnd="@+id/password" />
 
 
@@ -108,6 +113,7 @@
                 android:layout_marginTop="54dp"
                 android:hint="Roll NO"
                 android:layout_alignParentTop="true"
+                android:layout_alignLeft="@+id/r_regid"
                 android:layout_alignStart="@+id/r_regid" />
 
             <EditText
@@ -127,6 +133,7 @@
                 android:text="register"
                 android:id="@+id/register"
                 android:layout_below="@+id/r_regid"
+                android:layout_alignRight="@+id/r_regid"
                 android:layout_alignEnd="@+id/r_regid" />
         </RelativeLayout>
     </ViewFlipper>
@@ -141,12 +148,50 @@
             android:layout_height="60dp"
             android:inputType="textPassword"
             android:ems="10"
-            android:id="@+id/pass1"
+            android:id="@+id/pass6"
 
             android:layout_weight="1"
-            android:layout_marginTop="150dp"
-            android:hint="Enter Password"
+            android:hint="Name"
+            android:layout_marginTop="143dp"
             android:layout_alignParentTop="true"
+            android:layout_alignLeft="@+id/pass5"
+            android:layout_alignStart="@+id/pass5" />
+        <EditText
+            android:layout_width="320dp"
+            android:layout_height="60dp"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/pass5"
+            android:layout_below="@+id/pass6"
+            android:layout_weight="1"
+            android:hint="Course"
+            android:layout_centerVertical="true"
+            android:layout_alignLeft="@+id/pass1"
+            android:layout_alignStart="@+id/pass1" />
+        <EditText
+            android:layout_width="320dp"
+            android:layout_height="60dp"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/pass4"
+            android:layout_below="@+id/pass5"
+            android:layout_weight="1"
+            android:hint="Branch"
+            android:layout_centerVertical="true"
+            android:layout_alignLeft="@+id/pass1"
+            android:layout_alignStart="@+id/pass1" />
+        <EditText
+            android:layout_width="320dp"
+            android:layout_height="60dp"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/pass1"
+
+            android:layout_below="@+id/pass4"
+            android:layout_weight="1"
+            android:hint="Enter Password"
+            android:layout_centerVertical="true"
+            android:layout_alignLeft="@+id/pass2"
             android:layout_alignStart="@+id/pass2" />
 
         <EditText
@@ -167,6 +212,7 @@
             android:text="Save Password"
             android:id="@+id/submit"
             android:layout_below="@+id/pass2"
+            android:layout_alignRight="@+id/pass2"
             android:layout_alignEnd="@+id/pass2" />
         <CheckBox
             android:layout_width="wrap_content"
@@ -174,6 +220,7 @@
             android:text="Show Password"
             android:id="@+id/show_password"
             android:layout_below="@+id/pass2"
+            android:layout_alignLeft="@+id/pass2"
             android:layout_alignStart="@+id/pass2" />
     </RelativeLayout>
 </RelativeLayout>
