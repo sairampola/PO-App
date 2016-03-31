@@ -22,6 +22,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -247,6 +248,11 @@ public class  HomeScreen extends AppCompatActivity
             //gcm.unregisterUser();
             this.unRegisterUser();
             userSessionManager.logoutUser();
+        }
+        else if(id == R.id.afeedback)
+        {
+            Intent intent = new Intent(this,Feedback.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

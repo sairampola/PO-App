@@ -58,6 +58,7 @@ public class YbdView extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         try{
+                            Toast.makeText(getApplicationContext(),response,Toast.LENGTH_LONG).show();
                             progressDialog.dismiss();
                             JSONObject object = new JSONObject(response);
                             boolean e = object.getBoolean("error");
@@ -77,6 +78,7 @@ public class YbdView extends AppCompatActivity {
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        progressDialog.dismiss();
                         Toast.makeText(getApplicationContext(),"volley error "+error.getMessage(),Toast.LENGTH_LONG).show();
                     }
                 })
@@ -85,7 +87,7 @@ public class YbdView extends AppCompatActivity {
                 public Map<String, String> getParams()
                     {
                         Map<String,String> params = new HashMap<String, String>();
-                        params.put("rollno",LoginScreen.rollno);
+                        params.put("rollno",new UserSessionManager(getApplicationContext()).getRollno());
                         params.put("jobid",jobid);
                         return params;
                     }
@@ -128,5 +130,9 @@ public class YbdView extends AppCompatActivity {
             }
         };
         MySingleton.getInstance(this).addToRequestQueue(request);
+    }
+    public void applyjob()
+    {
+
     }
 }

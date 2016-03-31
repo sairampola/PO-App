@@ -20,7 +20,10 @@
         android:id="@+id/update_photo"
         android:icon="@drawable/app_add"
         android:title="Upload Photo" />
-    </group>
+        <item
+            android:id="@+id/afeedback"
+            android:icon="@drawable/app_add"
+            android:title="Feedback" /> </group>
     <item
         android:id="@+id/logout"
         android:icon="@drawable/app_logout"
