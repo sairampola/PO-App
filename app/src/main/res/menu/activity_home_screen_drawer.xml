@@ -22,8 +22,13 @@
         android:title="Upload Photo" />
         <item
             android:id="@+id/afeedback"
-            android:icon="@drawable/app_add"
-            android:title="Feedback" /> </group>
+            android:icon="@drawable/app_feed"
+            android:title="Feedback" />
+        <item
+            android:id="@+id/about_us"
+            android:icon="@drawable/app_about"
+            android:title="About App" />
+    </group>
     <item
         android:id="@+id/logout"
         android:icon="@drawable/app_logout"
