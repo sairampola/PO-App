@@ -33,7 +33,6 @@ public class YbdView extends AppCompatActivity {
         setContentView(R.layout.activity_ybd_view);
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading Details...");
-        progressDialog.show();
         companyname = (TextView) findViewById(R.id.company_name);
         cutoff = (TextView) findViewById(R.id.cutoff);
         paypackage = (TextView) findViewById(R.id.paypackage);
@@ -58,7 +57,7 @@ public class YbdView extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         try{
-                            Toast.makeText(getApplicationContext(),response,Toast.LENGTH_LONG).show();
+                           // Toast.makeText(getApplicationContext(),response,Toast.LENGTH_LONG).show();
                             progressDialog.dismiss();
                             JSONObject object = new JSONObject(response);
                             boolean e = object.getBoolean("error");
@@ -95,7 +94,7 @@ public class YbdView extends AppCompatActivity {
                 MySingleton.getInstance(getApplicationContext()).addToRequestQueue(request);
             }
         });
-
+        progressDialog.show();
         String url = new URLConstants().BaseURL+"getybddetails.php";
         StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
@@ -118,6 +117,7 @@ public class YbdView extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                progressDialog.dismiss();
                 Toast.makeText(getApplicationContext(),"error " + error.getMessage(),Toast.LENGTH_SHORT).show();
             }
         })
@@ -131,8 +131,5 @@ public class YbdView extends AppCompatActivity {
         };
         MySingleton.getInstance(this).addToRequestQueue(request);
     }
-    public void applyjob()
-    {
 
-    }
 }

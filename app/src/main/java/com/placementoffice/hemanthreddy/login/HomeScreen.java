@@ -271,7 +271,7 @@ public class  HomeScreen extends AppCompatActivity
 
         final String f = pref.getString("regid", "");
         final String rollno = userSessionManager.getRollno();
-        Toast.makeText(this,f+rollno,Toast.LENGTH_SHORT).show();
+       // Toast.makeText(this,f+rollno,Toast.LENGTH_SHORT).show();
         if(TextUtils.isEmpty(f))
             return;
         else
@@ -336,7 +336,7 @@ public class  HomeScreen extends AppCompatActivity
         //s_rollno = (TextView) header.findViewById(R.id.stu_rollno);
         s_rollno.setText(userSessionManager.getRollno());
         //Toast.makeText(this,"resume",Toast.LENGTH_SHORT).show();
-       MsgSharedPreference obj = new MsgSharedPreference(this);
+     /**  MsgSharedPreference obj = new MsgSharedPreference(this);
        Log.e("msg received",""+obj.isMsgReceived());
         //Toast.makeText(this,obj.getTitle(),Toast.LENGTH_SHORT).show();
         if(obj.isMsgReceived())
@@ -352,9 +352,13 @@ public class  HomeScreen extends AppCompatActivity
             noticeList.add(0,notice);
             noticeAdapter.notifyDataSetChanged();
             listView.smoothScrollToPosition(0);
+
+       // this.getNoticess(30);
             obj.clearMsgPref();
             obj.setIsMsgReceived(false);
-        }
+      }
+      */
+
 
     }
 }

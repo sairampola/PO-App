@@ -48,18 +48,20 @@ public class NoticeView extends AppCompatActivity {
         StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-               // Toast.makeText(getApplicationContext(),"response",Toast.LENGTH_LONG).show();
+               //Toast.makeText(getApplicationContext(),"response"+response,Toast.LENGTH_LONG).show();
                 try
                 {
                     JSONObject jsonObject = new JSONObject(response);
                         data[0] = jsonObject.getString("content");
                     //Toast.makeText(getApplicationContext(),data[0],Toast.LENGTH_LONG).show();
                     webView.loadData(data[0], "text/html", null);
-                    progressDialog.dismiss();
+
                 }catch(JSONException error)
                 {
                     Toast.makeText(getApplicationContext(),error.getMessage(),Toast.LENGTH_LONG).show();
+                   // Toast.makeText(getApplicationContext(),response,Toast.LENGTH_LONG).show();
                 }
+                progressDialog.dismiss();
             }
         }, new Response.ErrorListener() {
             @Override

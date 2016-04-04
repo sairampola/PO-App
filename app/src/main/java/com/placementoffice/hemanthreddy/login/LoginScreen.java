@@ -185,7 +185,7 @@ public class
     public void requestLogin() {
         final String pass = password.getText().toString();
         rollno = userid.getText().toString();
-        Toast.makeText(getApplicationContext(),rollno+""+pass,Toast.LENGTH_LONG).show();
+       // Toast.makeText(getApplicationContext(),rollno+""+pass,Toast.LENGTH_LONG).show();
 
         if(TextUtils.isEmpty(rollno))
         {
@@ -219,11 +219,11 @@ public class
                            // userSessionManager.createSession(rollno);
                             //starting the gcm intent service to register the device with the GCM servers and main server
                             userSessionManager.createSession(rollno,pass,name);
-                            Toast.makeText(getApplicationContext(),"gcm intent",Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getApplicationContext(),"gcm intent",Toast.LENGTH_SHORT).show();
                             Intent gcm_intent = new Intent(getApplicationContext(),GCM.class);
                             gcm_intent.putExtra("rollno",rollno);
                             startService(gcm_intent);
-                            Toast.makeText(getApplicationContext(),"gcm called",Toast.LENGTH_SHORT).show();
+                           // Toast.makeText(getApplicationContext(),"gcm called",Toast.LENGTH_SHORT).show();
 
                             //starting the home screen intent
                             Intent notice_board_intent = new Intent(getApplicationContext(),HomeScreen.class);
@@ -372,7 +372,7 @@ public class
             @Override
             public void onResponse(String response) {
                 progressDialog.dismiss();
-                Toast.makeText(getApplicationContext(),response,Toast.LENGTH_LONG).show();
+               // Toast.makeText(getApplicationContext(),response,Toast.LENGTH_LONG).show();
               try
               {
                   JSONObject jsonObject = new JSONObject(response);
